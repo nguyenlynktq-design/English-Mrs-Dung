@@ -37,6 +37,10 @@ import {
   Zap
 } from "lucide-react";
 
+import classroomHero from "./assets/images/classroom_hero_1778050879279.png";
+import communicationImg from "./assets/images/communication_course_adults_1778052065035.png";
+import ieltsMasteryImg from "./assets/images/ielts_mastery_card_1778050899069.png";
+
 export default function App() {
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -85,7 +89,7 @@ export default function App() {
             <img 
               alt="Classroom background" 
               className="w-full h-full object-cover opacity-90" 
-              src="/src/assets/images/classroom_hero_1778050879279.png"
+              src={classroomHero}
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
@@ -226,7 +230,7 @@ export default function App() {
                   bg: "bg-blue-50"
                 },
                 { 
-                  image: "/src/assets/images/communication_course_adults_1778052065035.png",
+                  image: communicationImg,
                   title: "Giao Tiếp", 
                   subtitle: "Tự Nhiên", 
                   desc: "Tập trung phản xạ thực tế, giúp học viên tự tin giao tiếp hiệu quả.",
@@ -272,7 +276,7 @@ export default function App() {
               <img 
                 alt="IELTS Mastery" 
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                src="/src/assets/images/ielts_mastery_card_1778050899069.png"
+                src={ieltsMasteryImg}
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-on-surface/90 via-on-surface/40 to-transparent"></div>
