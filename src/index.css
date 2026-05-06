@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Lexend:wght@600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-lexend: "Lexend", sans-serif;
+
+  --color-primary: #006b2d;
+  --color-primary-container: #00873b;
+  --color-on-primary: #ffffff;
+  --color-secondary: #705d00;
+  --color-secondary-container: #fcd400;
+  --color-on-secondary-container: #6e5c00;
+  --color-surface: #f4fafd;
+  --color-surface-variant: #dde4e6;
+  --color-on-surface: #161d1f;
+  --color-on-surface-variant: #3e4a3e;
+  --color-outline: #6e7a6d;
+  --color-outline-variant: #bdcaba;
+  --color-background: #f4fafd;
+  --color-on-background: #161d1f;
+  --color-tertiary: #2c683b;
+  --color-tertiary-container: #468152;
+  --color-surface-bright: #f4fafd;
+  --color-surface-dim: #d4dbdd;
+  --color-surface-container-highest: #dde4e6;
+  --color-surface-container-lowest: #ffffff;
+
+  --shadow-level-1: 0px 4px 12px 0px rgba(29, 163, 77, 0.08);
+}
+
+@utility bg-surface-green {
+  background-color: rgba(29, 163, 77, 0.04);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-sans antialiased;
+  }
+}
+
