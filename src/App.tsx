@@ -37,10 +37,6 @@ import {
   Zap
 } from "lucide-react";
 
-import classroomHero from "./assets/images/classroom_hero_1778050879279.png";
-import communicationImg from "./assets/images/communication_course_adults_1778052065035.png";
-import ieltsMasteryImg from "./assets/images/ielts_mastery_card_1778050899069.png";
-
 export default function App() {
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -61,7 +57,15 @@ export default function App() {
       {/* Header */}
       <header className="bg-surface border-b border-outline-variant w-full sticky top-0 z-50">
         <div className="flex justify-between items-center w-full px-6 h-20 max-w-7xl mx-auto">
-          <div className="font-lexend text-xl md:text-2xl font-bold text-primary">English Mrs. Dung</div>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://i.postimg.cc/SR9H8vjC/317271424149767020.jpg" 
+              alt="English Mrs. Dung Logo" 
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover shadow-sm border border-outline-variant/30"
+              referrerPolicy="no-referrer"
+            />
+            <div className="font-lexend text-xl md:text-2xl font-bold text-primary leading-none">English Mrs. Dung</div>
+          </div>
           
           {/* Mobile Menu Icon */}
           <button className="md:hidden text-on-surface-variant hover:text-primary transition-colors">
@@ -89,7 +93,7 @@ export default function App() {
             <img 
               alt="Classroom background" 
               className="w-full h-full object-cover opacity-90" 
-              src={classroomHero}
+              src="https://i.postimg.cc/FHvNXRbq/1727873785610981139-(2).jpg"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
@@ -230,7 +234,7 @@ export default function App() {
                   bg: "bg-blue-50"
                 },
                 { 
-                  image: communicationImg,
+                  image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
                   title: "Giao Tiếp", 
                   subtitle: "Tự Nhiên", 
                   desc: "Tập trung phản xạ thực tế, giúp học viên tự tin giao tiếp hiệu quả.",
@@ -276,7 +280,7 @@ export default function App() {
               <img 
                 alt="IELTS Mastery" 
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                src={ieltsMasteryImg}
+                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1200"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-on-surface/90 via-on-surface/40 to-transparent"></div>
@@ -317,7 +321,7 @@ export default function App() {
                 <span className="text-xs font-bold uppercase tracking-widest">Công nghệ AI tiên phong</span>
               </div>
               <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold tracking-tight">
-                Học tập thông minh cùng <span className="text-primary">Mrs. Dung AI</span>
+                Ứng dụng công nghệ độc quyền <br className="hidden md:block" /> chỉ có tại <span className="text-primary">English Mrs. Dung</span>
               </h2>
               <p className="text-on-surface-variant max-w-2xl leading-relaxed">
                 Trải nghiệm hệ sinh thái học tập hiện đại, giúp tối ưu hóa thời gian và nâng cao hiệu quả kỹ năng tiếng Anh vượt trội.
@@ -347,7 +351,8 @@ export default function App() {
                   image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800",
                   desc: "Chấm chữa bài viết AI ngay lập tức, sửa lỗi ngữ pháp và gợi ý cách dùng từ vựng nâng cao.",
                   color: "bg-indigo-600",
-                  shadow: "shadow-indigo-500/30"
+                  shadow: "shadow-indigo-500/30",
+                  link: "https://writingpro.vercel.app/"
                 },
                 { 
                   icon: MicVocal, 
@@ -355,7 +360,8 @@ export default function App() {
                   image: "https://images.unsplash.com/photo-1543269664-56d93c1b41a6?auto=format&fit=crop&q=80&w=800",
                   desc: "Luyện phát âm chuẩn bản xứ với trí tuệ nhân tạo, phản hồi chính xác từng âm tiết trong thời gian thực.",
                   color: "bg-rose-600",
-                  shadow: "shadow-rose-500/30"
+                  shadow: "shadow-rose-500/30",
+                  link: "https://engspeak-p3eu.vercel.app/"
                 }
               ].map((item, i) => (
                 <motion.div 
@@ -548,6 +554,120 @@ export default function App() {
           </div>
         </section>
 
+        {/* Special AI Bonus Section: Sesame AI Speaking */}
+        <section className="py-20 px-6 bg-gradient-to-br from-primary/5 to-secondary/5 overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <motion.div 
+              {...fadeInUp}
+              className="bg-white rounded-[4rem] p-8 md:p-16 shadow-2xl border-4 border-primary/10 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden"
+            >
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+              
+              <div className="w-full md:w-1/3 flex justify-center order-2 md:order-1 relative">
+                <motion.div
+                  animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative"
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=800" 
+                    alt="AI Buddy Illustration"
+                    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-[3rem] shadow-2xl border-8 border-white"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute -bottom-6 -right-6 bg-[#fcd400] p-4 rounded-full shadow-lg border-4 border-white">
+                    <Sparkles className="w-8 h-8 text-primary shadow-sm" />
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="w-full md:w-2/3 flex flex-col gap-6 order-1 md:order-2 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 bg-secondary-container text-primary px-4 py-2 rounded-full w-fit mx-auto md:mx-0">
+                  <Star className="w-5 h-5 fill-secondary" />
+                  <span className="text-sm font-bold uppercase tracking-widest">Tính năng đặc biệt</span>
+                </div>
+                <h2 className="font-lexend text-3xl md:text-5xl font-bold text-on-surface leading-tight">
+                  Tự tin giao tiếp cùng <br className="hidden md:block" /> <span className="text-primary italic">AI Buddy</span> miễn phí!
+                </h2>
+                <p className="text-on-surface-variant text-lg leading-relaxed max-w-2xl">
+                  Bạn lo lắng khi nói tiếng Anh? Đừng sợ! Hãy luyện tập cùng người bạn AI siêu thông minh và ngộ nghĩnh này mỗi ngày để phản xạ nói tự nhiên, lưu loát hơn mỗi ngày. 
+                </p>
+                <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+                  <div className="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-2xl border border-outline-variant/30 text-sm font-bold text-primary">
+                    <CheckCircle2 className="w-4 h-4" /> Hoàn toàn miễn phí
+                  </div>
+                  <div className="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-2xl border border-outline-variant/30 text-sm font-bold text-primary">
+                    <Zap className="w-4 h-4" /> Phản hồi 1-1 tức thì
+                  </div>
+                </div>
+                <a 
+                  href="https://app.sesame.com/?_gl=1*18kgknd*_ga*MTEyNTA0MjA3OS4xNzc4MDgxNzYy*_ga_ZZLPJBMBEN*czE3NzgxMTE2NzkkbzIkZzAkdDE3NzgxMTE2NzkkajYwJGwwJGgw" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-4 bg-primary text-white font-bold py-5 px-10 rounded-2xl self-center md:self-start shadow-xl shadow-primary/30 hover:bg-primary-container hover:-translate-y-1 transition-all active:scale-[0.98] flex items-center gap-3 text-lg group"
+                >
+                  Bắt đầu luyện nói ngay <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Activities Gallery Section */}
+        <section className="py-24 px-6 bg-surface-variant/20 overflow-hidden">
+          <div className="max-w-7xl mx-auto flex flex-col gap-16">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center items-center">
+              <span className="text-primary font-bold text-sm tracking-widest uppercase mb-2">Moments of Joy</span>
+              <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold">
+                Khoảnh khắc tại <span className="text-primary">Trung tâm</span>
+              </h2>
+              <div className="h-1.5 w-24 bg-secondary-container rounded-full mb-4"></div>
+              <p className="text-on-surface-variant max-w-2xl text-lg leading-relaxed text-center">
+                Tại English Mrs. Dung, học tập không chỉ giới hạn trong sách vở. Chúng tôi kiến tạo một cộng đồng năng động, nơi tiếng Anh trở thành ngôn ngữ của niềm vui, sự sẻ chia và những trải nghiệm thực tế đáng nhớ.
+              </p>
+            </motion.div>
+
+            {/* Masonry-style Grid */}
+            <motion.div 
+              variants={stagger}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[300px]"
+            >
+              {[
+                { url: "https://i.postimg.cc/RZm4xF12/1727873785610981139.jpg", size: "md:row-span-2 md:col-span-2", title: "Lớp học sôi nổi" },
+                { url: "https://i.postimg.cc/mhXqGfnW/678111433140660733.jpg", size: "md:row-span-1 md:col-span-1", title: "Tự tin giao tiếp" },
+                { url: "https://i.postimg.cc/dVFwc1Rz/1727873785610981139-(1).jpg", size: "md:row-span-2 md:col-span-1", title: "Năng lượng tích cực" },
+                { url: "https://i.postimg.cc/YC7MB9N5/2655317141404378600.jpg", size: "md:row-span-1 md:col-span-1", title: "Trải nghiệm thực tế" },
+                { url: "https://i.postimg.cc/xqT77T6f/495912959986367970-(1).jpg", size: "md:row-span-1 md:col-span-2", title: "Hành trình chinh phục" },
+                { url: "https://i.postimg.cc/9z8Sj5k5/678111433140660733-(1).jpg", size: "md:row-span-1 md:col-span-2", title: "Cộng đồng hạnh phúc" }
+              ].map((img, i) => (
+                <motion.div 
+                  key={i}
+                  variants={fadeInUp}
+                  className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg ${img.size}`}
+                >
+                  <img 
+                    src={img.url} 
+                    alt={img.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 md:p-8">
+                    <div className="text-white">
+                      <p className="text-xs font-bold uppercase tracking-widest text-[#fcd400] mb-1">Activity</p>
+                      <h4 className="text-lg font-bold">{img.title}</h4>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
       </main>
 
       {/* Registration Section (Moved above footer) */}
@@ -597,11 +717,13 @@ export default function App() {
           
           {/* Column 1: Logo & Tagline */}
           <motion.div {...fadeInUp} className="flex flex-col items-center md:items-start gap-4">
-            <div className="w-32 h-32 bg-white rounded-[2rem] p-4 border-4 border-[#fcd400] flex items-center justify-center shadow-2xl rotate-3">
-              <div className="text-primary flex flex-col items-center">
-                <School className="w-12 h-12" />
-                <div className="w-8 h-1 bg-primary/20 rounded-full mt-1"></div>
-              </div>
+            <div className="w-32 h-32 bg-white rounded-[2rem] p-4 border-4 border-[#fcd400] flex items-center justify-center shadow-2xl rotate-3 overflow-hidden">
+              <img 
+                src="https://i.postimg.cc/SR9H8vjC/317271424149767020.jpg" 
+                alt="English Mrs. Dung Logo" 
+                className="w-full h-full object-cover rounded-xl"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left mt-2">
               <h2 className="font-lexend text-2xl font-bold text-[#fcd400] tracking-wider uppercase">English Mrs. Dung</h2>
