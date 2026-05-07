@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { 
   Menu, 
   Globe, 
@@ -52,6 +53,33 @@ export default function App() {
     transition: { staggerChildren: 0.1 }
   };
 
+  const Counter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
+    const [count, setCount] = useState(0);
+    const nodeRef = useRef(null);
+    const isInView = useInView(nodeRef, { once: true });
+
+    useEffect(() => {
+      if (isInView) {
+        let startTime: number;
+        let animationFrame: number;
+
+        const step = (timestamp: number) => {
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+          setCount(Math.floor(progress * end));
+          if (progress < 1) {
+            animationFrame = requestAnimationFrame(step);
+          }
+        };
+
+        animationFrame = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(animationFrame);
+      }
+    }, [isInView, end, duration]);
+
+    return <span ref={nodeRef}>{count}</span>;
+  };
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
       {/* Header */}
@@ -93,7 +121,7 @@ export default function App() {
             <img 
               alt="Classroom background" 
               className="w-full h-full object-cover opacity-90" 
-              src="https://i.postimg.cc/FHvNXRbq/1727873785610981139-(2).jpg"
+              src="https://i.postimg.cc/KcLfjY71/3159100920188749878.jpg"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
@@ -186,7 +214,7 @@ export default function App() {
                 "Học tiếng Anh không chỉ là học một ngôn ngữ, mà là mở ra một thế giới mới."
               </p>
               <p>
-                Với <strong>15 năm kinh nghiệm</strong> giảng dạy chuyên sâu các lớp "mất gốc", Mrs. Dung đã đồng hành và giúp hàng trăm học viên lấy lại nền tảng vững chắc về ngữ pháp, từ vựng và phát âm.
+                Với <strong>15 năm kinh nghiệm</strong> giảng dạy chuyên sâu các lớp "mất gốc", Mrs. Dung đã đồng hành và giúp hàng nghìn học viên lấy lại nền tảng vững chắc về ngữ pháp, từ vựng và phát âm.
               </p>
               <p>
                 Phương pháp giảng dạy của cô tập trung vào việc khơi gợi niềm yêu thích, xóa tan rào cản tâm lý sợ sai, giúp học viên tự tin giao tiếp và đạt được nhiều thành tích vượt trội trong các kỳ thi sau khóa học.
@@ -195,11 +223,11 @@ export default function App() {
 
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div className="bg-surface p-4 rounded-xl border border-outline-variant/30 text-center">
-                <div className="text-2xl font-bold text-primary">15+</div>
+                <div className="text-2xl font-bold text-primary"><Counter end={15} />+</div>
                 <div className="text-xs uppercase font-bold text-on-surface-variant opacity-60">Năm kinh nghiệm</div>
               </div>
               <div className="bg-surface p-4 rounded-xl border border-outline-variant/30 text-center">
-                <div className="text-2xl font-bold text-primary">500+</div>
+                <div className="text-2xl font-bold text-primary"><Counter end={1000} />+</div>
                 <div className="text-xs uppercase font-bold text-on-surface-variant opacity-60">Học viên thành công</div>
               </div>
             </div>
@@ -272,32 +300,7 @@ export default function App() {
               ))}
             </div>
 
-            {/* Featured Course Banner */}
-            <motion.div 
-              {...fadeInUp}
-              className="relative rounded-3xl overflow-hidden shadow-xl aspect-[21/9] min-h-[300px] group cursor-pointer"
-            >
-              <img 
-                alt="IELTS Mastery" 
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1200"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-on-surface/90 via-on-surface/40 to-transparent"></div>
-              <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 text-white max-w-xl gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full">KHOÁ HỌC NỔI BẬT</span>
-                  <Sparkles className="w-4 h-4 text-secondary-container fill-secondary-container" />
-                </div>
-                <h3 className="font-lexend text-3xl md:text-5xl font-bold">IELTS Mastery</h3>
-                <p className="text-sm md:text-base opacity-90 hidden sm:block leading-relaxed">
-                  Lộ trình cá nhân hoá giúp bạn đạt target 7.0+ trong thời gian ngắn nhất. Cam kết lộ trình học bài bản và hiệu quả vượt trội.
-                </p>
-                <div className="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all w-fit bg-primary px-8 py-4 rounded-xl mt-4 shadow-lg shadow-primary/20">
-                  Tìm hiểu chương trình <ArrowRight className="w-4 h-4" />
-                </div>
-              </div>
-            </motion.div>
+
             
             <motion.button 
               {...fadeInUp}
@@ -637,12 +640,64 @@ export default function App() {
               viewport={{ once: true }}
               className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[300px]"
             >
+              {/* Video 1 - Large Feature */}
+              <motion.div 
+                variants={fadeInUp}
+                className="md:row-span-2 md:col-span-2 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg border-4 border-primary/20 bg-black group"
+              >
+                <iframe 
+                  src="https://drive.google.com/file/d/1GClxMe_t8W1iCbsD-pv3mITdALaydhNf/preview" 
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Hoạt động trung tâm video 1"
+                ></iframe>
+                <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-sm pointer-events-none">
+                  <Play className="w-3 h-3 fill-current" /> Video nổi bật
+                </div>
+              </motion.div>
+
+              {/* Video 2 */}
+              <motion.div 
+                variants={fadeInUp}
+                className="md:row-span-1 md:col-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg border-4 border-secondary/20 bg-black group"
+              >
+                <iframe 
+                  src="https://drive.google.com/file/d/1csK6a3HBjiY2MEXEyJv0XIB-MlpPRm1w/preview" 
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Hoạt động trung tâm video 2"
+                ></iframe>
+              </motion.div>
+
+              {/* Video 3 */}
+              <motion.div 
+                variants={fadeInUp}
+                className="md:row-span-1 md:col-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg border-4 border-secondary/20 bg-black group"
+              >
+                <iframe 
+                  src="https://drive.google.com/file/d/1i3txbw8xygWaBiv7GWf405W_yaugqkE6/preview" 
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Hoạt động trung tâm video 3"
+                ></iframe>
+              </motion.div>
+
+              {/* Video 4 (Original) */}
+              <motion.div 
+                variants={fadeInUp}
+                className="md:row-span-1 md:col-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg border-4 border-primary/10 bg-black group"
+              >
+                <iframe 
+                  src="https://drive.google.com/file/d/1vDQyiNJ58cxV9QQDghS1ic_jW0ErGapT/preview" 
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Hoạt động trung tâm video 4"
+                ></iframe>
+              </motion.div>
+
               {[
-                { url: "https://i.postimg.cc/RZm4xF12/1727873785610981139.jpg", size: "md:row-span-2 md:col-span-2", title: "Lớp học sôi nổi" },
-                { url: "https://i.postimg.cc/mhXqGfnW/678111433140660733.jpg", size: "md:row-span-1 md:col-span-1", title: "Tự tin giao tiếp" },
-                { url: "https://i.postimg.cc/dVFwc1Rz/1727873785610981139-(1).jpg", size: "md:row-span-2 md:col-span-1", title: "Năng lượng tích cực" },
-                { url: "https://i.postimg.cc/YC7MB9N5/2655317141404378600.jpg", size: "md:row-span-1 md:col-span-1", title: "Trải nghiệm thực tế" },
-                { url: "https://i.postimg.cc/xqT77T6f/495912959986367970-(1).jpg", size: "md:row-span-1 md:col-span-2", title: "Hành trình chinh phục" },
+                { url: "https://i.postimg.cc/RZm4xF12/1727873785610981139.jpg", size: "md:row-span-1 md:col-span-1", title: "Lớp học sôi nổi" },
+                { url: "https://i.postimg.cc/dVFwc1Rz/1727873785610981139-(1).jpg", size: "md:row-span-1 md:col-span-1", title: "Năng lượng tích cực" },
                 { url: "https://i.postimg.cc/9z8Sj5k5/678111433140660733-(1).jpg", size: "md:row-span-1 md:col-span-2", title: "Cộng đồng hạnh phúc" }
               ].map((img, i) => (
                 <motion.div 
