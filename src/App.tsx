@@ -364,7 +364,7 @@ export default function App() {
                   desc: "Luyện phát âm chuẩn bản xứ với trí tuệ nhân tạo, phản hồi chính xác từng âm tiết trong thời gian thực.",
                   color: "bg-rose-600",
                   shadow: "shadow-rose-500/30",
-                  link: "https://engspeak-p3eu.vercel.app/"
+                  link: "https://mrsdungspeak.vercel.app/"
                 }
               ].map((item, i) => (
                 <motion.div 
@@ -374,14 +374,25 @@ export default function App() {
                   className="group relative bg-white rounded-[2rem] shadow-level-1 hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden border border-outline-variant/20"
                 >
                   <div className="aspect-[16/10] overflow-hidden relative">
-                    <img 
-                      src={item.image} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                      alt={item.title}
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className={`absolute top-4 left-4 w-12 h-12 ${item.color} rounded-xl flex items-center justify-center text-white shadow-lg ${item.shadow}`}>
+                    {item.link ? (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+                        <img 
+                          src={item.image} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                          alt={item.title}
+                          referrerPolicy="no-referrer"
+                        />
+                      </a>
+                    ) : (
+                      <img 
+                        src={item.image} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        alt={item.title}
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+                    <div className={`absolute top-4 left-4 w-12 h-12 ${item.color} rounded-xl flex items-center justify-center text-white shadow-lg ${item.shadow} pointer-events-none`}>
                       <item.icon className="w-6 h-6" />
                     </div>
                   </div>
@@ -410,150 +421,6 @@ export default function App() {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
-        </section>
-
-        {/* Entertainment & Self-Study resources */}
-        <section className="py-24 px-6 bg-white">
-          <div className="max-w-7xl mx-auto flex flex-col gap-16">
-            <motion.div {...fadeInUp} className="flex flex-col gap-4 items-center text-center">
-              <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold">
-                Tài nguyên <span className="text-primary text-opacity-80">Học mà chơi</span>
-              </h2>
-              <div className="h-1.5 w-24 bg-secondary-container rounded-full"></div>
-              <p className="text-on-surface-variant max-w-2xl text-lg">
-                Khám phá kho tàng giải trí và rèn luyện kỹ năng tự học mỗi ngày hoàn toàn miễn phí.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* Fun English Section */}
-              <motion.div 
-                {...fadeInUp}
-                className="group p-10 rounded-[3.5rem] relative overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-primary/20"
-              >
-                {/* Background Image with Overlay */}
-                <img 
-                  src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1200"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  alt="Fun English Background"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/80 to-transparent"></div>
-                
-                <div className="flex flex-col gap-8 relative z-10 text-white">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl">
-                      <Play className="w-8 h-8 fill-current" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold">Vui nhộn với Tiếng Anh</h3>
-                      <p className="text-white/80 font-medium">Video, Truyện & Trò chơi</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl flex items-center gap-3 border border-white/10">
-                      <Video className="w-5 h-5" />
-                      <span className="text-sm font-bold">Video sinh động</span>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl flex items-center gap-3 border border-white/10">
-                      <BookOpen className="w-5 h-5" />
-                      <span className="text-sm font-bold">Truyện song ngữ</span>
-                    </div>
-                  </div>
-
-                  <p className="text-white/90 leading-relaxed font-medium">
-                    Tổng hợp các nội dung hấp dẫn dành cho trẻ em và người mới bắt đầu. Học tiếng Anh qua những câu chuyện kể và giai điệu vui vẻ.
-                  </p>
-
-                  <div className="flex flex-wrap gap-4">
-                    {[
-                      { icon: Music, text: "Nhạc vui nhộn" },
-                      { icon: Gamepad2, text: "Mini Games" },
-                      { icon: Languages, text: "Truyện song ngữ" }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 text-xs font-bold">
-                        <item.icon className="w-3 h-3" />
-                        {item.text}
-                      </div>
-                    ))}
-                  </div>
-
-                  <a 
-                    href="https://www.tienganhchotreem.com/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 bg-secondary-container text-primary font-bold py-5 px-8 rounded-2xl self-start hover:shadow-2xl hover:-translate-y-1 transition-all"
-                  >
-                    Khám phá ngay <ArrowRight className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Dictation Practice Section */}
-              <motion.div 
-                {...fadeInUp}
-                className="group p-10 rounded-[3.5rem] relative overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-secondary/20"
-              >
-                {/* Background Image with Overlay */}
-                <img 
-                  src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1200"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  alt="Dictation Practice Background"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/95 via-secondary/80 to-transparent"></div>
-
-                <div className="flex flex-col gap-8 relative z-10 text-white">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl">
-                      <Headphones className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold">Luyện nghe chép</h3>
-                      <p className="text-white/80 font-medium">Daily Dictation Exercises</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-                    <div className="flex items-center gap-2 mb-2 text-secondary-container">
-                      <CheckCircle2 className="w-4 h-4" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-white">Phương pháp hiệu quả nhất</span>
-                    </div>
-                    <p className="text-white/90 text-sm leading-relaxed font-medium">
-                      Nghe và chép lại giúp bạn cải thiện khả năng nghe hiểu, từ vựng và ngữ pháp một cách đồng bộ.
-                    </p>
-                  </div>
-
-                  <p className="text-white/90 leading-relaxed font-medium">
-                    Rèn luyện đôi tai nhạy bén với hàng ngàn bài tập từ cơ bản đến nâng cao. Cam kết tiến bộ rõ rệt chỉ sau 30 ngày luyện tập đều đặn.
-                  </p>
-
-                  <div className="flex flex-wrap gap-4">
-                    {[
-                      { icon: Zap, text: "Phản xạ nhanh" },
-                      { icon: Star, text: "Nâng band điểm" },
-                      { icon: Heart, text: "Hứng thú học" }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 text-xs font-bold">
-                        <item.icon className="w-3 h-3" />
-                        {item.text}
-                      </div>
-                    ))}
-                  </div>
-
-                  <a 
-                    href="https://dailydictation.com/exercises" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 bg-white text-secondary font-bold py-5 px-8 rounded-2xl self-start hover:shadow-2xl hover:-translate-y-1 transition-all"
-                  >
-                    Bắt đầu luyện tập <ArrowRight className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
           </div>
         </section>
 
@@ -613,6 +480,34 @@ export default function App() {
                 >
                   Bắt đầu luyện nói ngay <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* About Us Video Section */}
+        <section className="py-24 px-6 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto flex flex-col gap-12">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center items-center">
+              <span className="text-primary font-bold text-sm tracking-widest uppercase mb-2">Giới thiệu về chúng tôi</span>
+              <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold">
+                Trung tâm ngoại ngữ <span className="text-primary">English Mrs. Dung</span>
+              </h2>
+              <div className="h-1.5 w-24 bg-secondary-container rounded-full mb-4"></div>
+            </motion.div>
+
+            <motion.div 
+              {...fadeInUp}
+              className="relative aspect-video w-full max-w-5xl mx-auto rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-8 border-surface-variant/30 group"
+            >
+              <iframe 
+                src="https://drive.google.com/file/d/1KQEJU-ep7ctweubYBDYhrK7A0BcTISO9/preview" 
+                className="w-full h-full"
+                allow="autoplay"
+                title="Giới thiệu English Mrs. Dung"
+              ></iframe>
+              <div className="absolute top-6 left-6 bg-primary text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full flex items-center gap-2 shadow-xl backdrop-blur-sm pointer-events-none">
+                <Play className="w-4 h-4 fill-current" /> Video giới thiệu
               </div>
             </motion.div>
           </div>
@@ -694,31 +589,6 @@ export default function App() {
                   title="Hoạt động trung tâm video 4"
                 ></iframe>
               </motion.div>
-
-              {[
-                { url: "https://i.postimg.cc/RZm4xF12/1727873785610981139.jpg", size: "md:row-span-1 md:col-span-1", title: "Lớp học sôi nổi" },
-                { url: "https://i.postimg.cc/dVFwc1Rz/1727873785610981139-(1).jpg", size: "md:row-span-1 md:col-span-1", title: "Năng lượng tích cực" },
-                { url: "https://i.postimg.cc/9z8Sj5k5/678111433140660733-(1).jpg", size: "md:row-span-1 md:col-span-2", title: "Cộng đồng hạnh phúc" }
-              ].map((img, i) => (
-                <motion.div 
-                  key={i}
-                  variants={fadeInUp}
-                  className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg ${img.size}`}
-                >
-                  <img 
-                    src={img.url} 
-                    alt={img.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 md:p-8">
-                    <div className="text-white">
-                      <p className="text-xs font-bold uppercase tracking-widest text-[#fcd400] mb-1">Activity</p>
-                      <h4 className="text-lg font-bold">{img.title}</h4>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
             </motion.div>
           </div>
         </section>
@@ -726,7 +596,7 @@ export default function App() {
       </main>
 
       {/* Registration Section (Moved above footer) */}
-      <section id="register" className="py-20 px-6 bg-surface-variant/30">
+      <section id="register" className="py-16 md:py-20 px-6 bg-surface-variant/30">
         <div className="max-w-4xl mx-auto">
           <motion.div {...fadeInUp} className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border border-outline-variant/10 relative overflow-hidden">
             <div className="absolute top-8 right-8 text-primary/10">
@@ -763,6 +633,255 @@ export default function App() {
               </form>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Learning Resources Section */}
+      <section className="py-24 px-6 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col gap-16">
+          <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center items-center">
+            <span className="text-secondary font-bold text-sm tracking-widest uppercase mb-2">Tăng tốc kỹ năng</span>
+            <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold">
+              Tài nguyên <span className="text-secondary">Học tập Miễn phí</span>
+            </h2>
+            <div className="h-1.5 w-24 bg-secondary-container rounded-full mb-4"></div>
+            <p className="text-on-surface-variant max-w-3xl text-lg leading-relaxed text-center">
+              Khám phá kho tàng kiến thức khổng lồ được Mrs. Dung tuyển chọn kỹ lưỡng, giúp bạn tự tin làm chủ tiếng Anh mỗi ngày.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            variants={stagger}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+          >
+            {[
+              { 
+                title: "MỎ VÀNG MIỄN PHÍ GIÚP BẠN LUYỆN LISTENING -READING- SPEAKING- VOCABULARY MỖI NGÀY ĐÂY", 
+                link: "https://newsinlevels.com/", 
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800",
+                color: "bg-amber-500",
+                icon: Sparkles
+              },
+              { 
+                title: "❓❓Tại sao lại có web đọc sách MIỄN PHÍ hay như thế này", 
+                link: "https://readalong.google.com/book/GLOBAL_sw_24768", 
+                image: "https://images.unsplash.com/photo-1512820790803-73c7e9cb5531?auto=format&fit=crop&q=80&w=800",
+                color: "bg-blue-500",
+                icon: BookOpen
+              },
+              { 
+                title: "WEBSITE LUYỆN CHÉP CHÍNH TẢ & LUYỆN ĐỌC TIẾNG ANH RẤT HAY CHO NGƯỜI MỚI BẮT ĐẦU", 
+                link: "https://breakingnewsenglish.com/", 
+                image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800",
+                color: "bg-emerald-500",
+                icon: PenTool
+              },
+              { 
+                title: "lUYỆN FULL 4 KỸ NĂNG", 
+                link: "https://www.eslfast.com/", 
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
+                color: "bg-rose-500",
+                icon: Zap
+              },
+              { 
+                title: "LUYỆN ĐỌC TIẾNG ANH TỪ A1 ĐẾN C1 XỨNG ĐÁNG 10 ĐIỂM KHÔNG CÓ NHƯNG", 
+                subtitle: "Luyện shadowing đầy đủ level từ A1 đến C1",
+                link: "https://shadowingenglish.com", 
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+                color: "bg-purple-500",
+                icon: Headphones
+              },
+              { 
+                title: "HỌC GIAO TIẾP TỪ A ĐẾN Z", 
+                link: "https://luyengiaotiep.com", 
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
+                color: "bg-indigo-500",
+                icon: MessageCircle
+              }
+            ].map((res, i) => (
+              <motion.a
+                key={i}
+                href={res.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={fadeInUp}
+                whileHover={{ y: -10 }}
+                className="group flex flex-col bg-surface rounded-[2.5rem] shadow-level-1 hover:shadow-2xl transition-all duration-500 border border-outline-variant/10 overflow-hidden"
+              >
+                <div className="aspect-[16/10] relative overflow-hidden">
+                  <img 
+                    src={res.image} 
+                    alt={res.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className={`absolute top-6 left-6 w-14 h-14 ${res.color} rounded-2xl flex items-center justify-center text-white shadow-xl border-4 border-white/20`}>
+                    <res.icon className="w-8 h-8" />
+                  </div>
+                </div>
+                
+                <div className="p-8 flex flex-col gap-4 flex-grow">
+                  <h3 className="font-lexend text-base md:text-lg font-bold text-on-surface leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                    {res.title}
+                  </h3>
+                  {'subtitle' in res && (
+                    <p className="text-xs font-bold text-secondary uppercase tracking-widest -mt-2">
+                      {res.subtitle}
+                    </p>
+                  )}
+                  <div className="mt-auto flex items-center gap-2 text-sm font-bold text-primary group-hover:gap-4 transition-all uppercase tracking-widest pt-4">
+                    Truy cập ngay <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Entertainment & Self-Study resources */}
+      <section className="py-24 px-6 bg-white border-t border-outline-variant/10">
+        <div className="max-w-7xl mx-auto flex flex-col gap-16">
+          <motion.div {...fadeInUp} className="flex flex-col gap-4 items-center text-center">
+            <h2 className="font-lexend text-3xl md:text-5xl text-on-surface font-bold">
+              Tài nguyên <span className="text-primary text-opacity-80">Học mà chơi</span>
+            </h2>
+            <div className="h-1.5 w-24 bg-secondary-container rounded-full"></div>
+            <p className="text-on-surface-variant max-w-2xl text-lg">
+              Khám phá kho tàng giải trí và rèn luyện kỹ năng tự học mỗi ngày hoàn toàn miễn phí.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Fun English Section */}
+            <motion.div 
+              {...fadeInUp}
+              className="group p-10 rounded-[3.5rem] relative overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-primary/20"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1200"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                alt="Fun English Background"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/80 to-transparent"></div>
+              
+              <div className="flex flex-col gap-8 relative z-10 text-white">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl">
+                    <Play className="w-8 h-8 fill-current" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold">Vui nhộn với Tiếng Anh</h3>
+                    <p className="text-white/80 font-medium">Video, Truyện & Trò chơi</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl flex items-center gap-3 border border-white/10">
+                    <Video className="w-5 h-5" />
+                    <span className="text-sm font-bold">Video sinh động</span>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl flex items-center gap-3 border border-white/10">
+                    <BookOpen className="w-5 h-5" />
+                    <span className="text-sm font-bold">Truyện song ngữ</span>
+                  </div>
+                </div>
+
+                <p className="text-white/90 leading-relaxed font-medium">
+                  Tổng hợp các nội dung hấp dẫn dành cho trẻ em và người mới bắt đầu. Học tiếng Anh qua những câu chuyện kể và giai điệu vui vẻ.
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { icon: Music, text: "Nhạc vui nhộn" },
+                    { icon: Gamepad2, text: "Mini Games" },
+                    { icon: Languages, text: "Truyện song ngữ" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 text-xs font-bold">
+                      <item.icon className="w-3 h-3" />
+                      {item.text}
+                    </div>
+                  ))}
+                </div>
+
+                <a 
+                  href="https://www.tienganhchotreem.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-secondary-container text-primary font-bold py-5 px-8 rounded-2xl self-start hover:shadow-2xl hover:-translate-y-1 transition-all"
+                >
+                  Khám phá ngay <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Dictation Practice Section */}
+            <motion.div 
+              {...fadeInUp}
+              className="group p-10 rounded-[3.5rem] relative overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-secondary/20"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1200"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                alt="Dictation Practice Background"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/95 via-secondary/80 to-transparent"></div>
+
+              <div className="flex flex-col gap-8 relative z-10 text-white">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl">
+                    <Headphones className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold">Luyện nghe chép</h3>
+                    <p className="text-white/80 font-medium">Daily Dictation Exercises</p>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                  <div className="flex items-center gap-2 mb-2 text-secondary-container">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-white">Phương pháp hiệu quả nhất</span>
+                  </div>
+                  <p className="text-white/90 text-sm leading-relaxed font-medium">
+                    Nghe và chép lại giúp bạn cải thiện khả năng nghe hiểu, từ vựng và ngữ pháp một cách đồng bộ.
+                  </p>
+                </div>
+
+                <p className="text-white/90 leading-relaxed font-medium">
+                  Rèn luyện đôi tai nhạy bén với hàng ngàn bài tập từ cơ bản đến nâng cao. Cam kết tiến bộ rõ rệt chỉ sau 30 ngày luyện tập đều đặn.
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { icon: Zap, text: "Phản xạ nhanh" },
+                    { icon: Star, text: "Nâng band điểm" },
+                    { icon: Heart, text: "Hứng thú học" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 text-xs font-bold">
+                      <item.icon className="w-3 h-3" />
+                      {item.text}
+                    </div>
+                  ))}
+                </div>
+
+                <a 
+                  href="https://dailydictation.com/exercises" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-white text-secondary font-bold py-5 px-8 rounded-2xl self-start hover:shadow-2xl hover:-translate-y-1 transition-all"
+                >
+                  Bắt đầu luyện tập <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
